@@ -1,0 +1,28 @@
+<template>
+  <div class="CopClass">
+    <h1>{{ msg }}</h1>
+    <h2>Element UI Button</h2>
+    <el-button>默认按钮</el-button>
+    <el-button type="primary">主要按钮</el-button>
+    <el-button type="text">文字按钮</el-button>
+  </div>
+
+</template>
+
+<script>
+  export default{
+    name:'CopName',
+    data() {
+      return {
+        msg: 'Hello Element UI'
+      }
+    }
+  }
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+#ceshhi{
+  font-size:36px;
+}
+</style>

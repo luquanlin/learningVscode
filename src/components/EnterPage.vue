@@ -5,6 +5,7 @@
     <el-button>默认按钮</el-button>
     <el-button type="primary">主要按钮</el-button>
     <el-button type="text">文字按钮</el-button>
+    <el-button type="primary" @click="login">登陆</el-button>
   </div>
 
 </template>
@@ -15,6 +16,16 @@
     data() {
       return {
         msg: 'Hello Element UI'
+      }
+    },
+    methods:{
+      login:function(){
+        var url = "/api/Login/GoIndex"
+        this.axios.post(url).then((res)=>{
+          console.log("成功")
+        }).catch((error)=>{
+           console.log("失败")
+        })
       }
     }
   }

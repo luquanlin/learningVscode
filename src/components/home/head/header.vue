@@ -33,7 +33,7 @@
   export default {
     data () {
       return {
-        isfullScreen: false,
+        isfullScreen: true,
         avatar: '../static/images/icon.jpg',
         loginshow:true
       }

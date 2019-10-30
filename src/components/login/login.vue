@@ -62,16 +62,13 @@ export default {
         })
         ).then((res) => {
           if (res.data.data == 1) {
-            this.$message({
-              message: '恭喜你，这是一条成功消息',
-              type: 'success'
-            })
+            this.$router.push({ path: '/' })
           } else {
             this.$message.error('账号或密码错误')
           }
         }).catch((error) => {
           this.$message.error('账号或密码错误')
-          this.$router.push({ path: '/' })
+          
         })
       }
     }

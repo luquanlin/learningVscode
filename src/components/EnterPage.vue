@@ -20,8 +20,9 @@
     },
     methods:{
       login:function(){
-        var url = "/api/Login/GoIndex"
+        var url = "/api/Login/selectUserLogin?user_account=13696442768&&user_password=123456"
         this.axios.post(url).then((res)=>{
+          console.log(res.data.data)
           console.log("成功")
         }).catch((error)=>{
            console.log("失败")

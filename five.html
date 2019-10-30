@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>井字棋</title>
+		<style>
+			.content{
+				position: relative;
+				margin: 0 auto;
+				width:600px;
+				height: 600px;
+				box-sizing: border-box;
+				
+			}
+			.cell{
+				position: relative;
+				float: left;
+				width: 200px;
+				height: 200px;
+				box-sizing: border-box;
+				border:1px solid red;
+			}
+			.cell[value="1"] .chess{
+				position: absolute;
+				width: 180px;
+				height:180px;
+				top: 50%;
+				left: 50%;
+				margin: -90px 0 0 -90px;
+				border-radius: 50%;
+				background:lightgray;
+			}
+			.cell[value="-1"] .chess{
+				position: absolute;
+				width: 180px;
+				height:180px;
+				top: 50%;
+				left: 50%;
+				margin: -90px 0 0 -90px;
+				background:black;
+				border-radius: 50%;
+			}
+			.mask{
+				position: fixed;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				z-index:999;
+				background:white;
+			}
+			.gameResult{
+				position: absolute;
+				bottom: 60%;
+				left: 50%;
+				width: 400px;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				margin: 0 0 0 -200px;
+			}
+			.gameStart{
+				position: absolute;
+				top: 40%;
+				left: 50%;
+				width: 200px;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				margin: 0 0 0 -100px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		
+		
+		<div id="main">
+			<!--遮罩层-->
+			<div class="mask" v-if="maskshow">
+				<div class="gameResult" v-if="resultshow">游戏结束,{{turn==2?"白":"黑"}}方胜</div>
+				<div class="gameStart"><button @click="gameStart()">{{masktips}}</button></div>
+			</div>
+			<!--主代码-->
+			<div class="content">
+				<div class="cell" :value="chess[0][0]" @click="active(0,0)"><div class="chess"></div></div>
+				<div class="cell" :value="chess[0][1]" @click="active(0,1)"><div class="chess"></div></div>
+				<div class="cell" :value="chess[0][2]" @click="active(0,2)"><div class="chess"></div></div>
+				<div class="cell" :value="chess[1][0]" @click="active(1,0)"><div class="chess"></div></div>
+				<div class="cell" :value="chess[1][1]" @click="active(1,1)"><div class="chess"></div></div>
+				<div class="cell" :value="chess[1][2]" @click="active(1,2)"><div class="chess"></div></div>
+				<div class="cell" :value="chess[2][0]" @click="active(2,0)"><div class="chess"></div></div>
+				<div class="cell" :value="chess[2][1]" @click="active(2,1)"><div class="chess"></div></div>
+				<div class="cell" :value="chess[2][2]" @click="active(2,2)"><div class="chess"></div></div>
+			</div>
+			
+		
+		</div>
+		
+		
+	</body>
+	<script src="js/vue-2.6.7.js"></script>
+	<script>
+		
+		let vm = new Vue({
+			"el":"#main",
+			data:{
+				//遮罩文字显示情况
+				"maskshow":true,
+				//遮罩文字
+				"masktips":"游戏开始",
+				//结果信息显示情况
+				"resultshow":false,
+				//当前回合轮到谁
+				"turn:":1,
+				//棋子信息
+				"chess":[
+					[0,0,0],
+					[0,0,0],
+					[0,0,0]
+				]
+			},
+			methods:{
+				//点击开始，遮罩消失
+				gameStart(){this.maskshow=false},
+				//游戏结束，初始化游戏状态,并提示
+				gameOver(){
+					
+					this.maskshow=true;
+					this.masktips="再来一局";
+					this.resultshow=true,
+					this.chess=[
+						[0,0,0],
+						[0,0,0],
+						[0,0,0]
+					]
+				},
+				//游戏规则判断
+				rule(){
+					
+					for(var i=0;i<3;i++){
+						for(var j=0;j<3;j++){
+							//打横
+							if(this.chess[i][0]+this.chess[i][1]+this.chess[i][2]==3){
+								this.gameOver();
+								return false;
+							}else if(this.chess[i][0]+this.chess[i][1]+this.chess[i][2]==-3){
+								this.gameOver();
+								return false;
+							}
+							//打竖
+							else if(this.chess[0][j]+this.chess[1][j]+this.chess[2][j]==3){
+								this.gameOver();
+								return false;
+							}else if(this.chess[0][j]+this.chess[1][j]+this.chess[2][j]==-3){
+								this.gameOver();
+								return false;
+							}
+							//斜向下
+							else if(this.chess[0][0]+this.chess[1][1]+this.chess[2][2]==3){
+								this.gameOver();
+								return false;
+							}else if(this.chess[0][0]+this.chess[1][1]+this.chess[2][2]==-3){
+								this.gameOver();
+								return false;
+							}
+							//斜向上
+							else if(this.chess[2][0]+this.chess[1][1]+this.chess[0][2]==3){
+								this.gameOver();
+								return false;
+							}else if(this.chess[2][0]+this.chess[1][1]+this.chess[0][2]==-3){
+								this.gameOver();
+								return false;
+							}
+						}
+					}
+				},
+				//落子
+				active(x,y){
+					if(this.chess[x][y]!=0){
+						alert("此处已有子")
+					}else{
+						if(this.turn==1){
+							this.$set(this.chess[x],y,1)
+							
+							this.rule();
+							this.turn=2;
+						}else{
+							this.$set(this.chess[x],y,-1)	
+							
+							this.rule();
+							this.turn=1;
+						}
+					}
+					
+				}
+			}
+		})
+	</script>
+</html>

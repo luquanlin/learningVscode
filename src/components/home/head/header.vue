@@ -14,7 +14,7 @@
         <li>
           <el-dropdown @command="handleCommand">
                   <span class="el-dropdown-link">
-                    卢泉林<i class="el-icon-arrow-down el-icon--right"></i>
+                    {{user_name}}<i class="el-icon-arrow-down el-icon--right"></i>
                   </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item command="b">修改密码</el-dropdown-item>
@@ -35,7 +35,8 @@
       return {
         isfullScreen: true,
         avatar: '../static/images/icon.jpg',
-        loginshow:true
+        loginshow:true,
+        user_name:'1',
       }
     },
     methods: {
@@ -86,6 +87,12 @@
         }
       }
 
+    },
+    mounted(){
+      this.axios.post("/api/Login/selectSession").then((res)=>{
+        console.log(res.data.data[0].user_name)
+        this.user_name = res.data.data[0].user_name
+      })
     }
   }
 </script>

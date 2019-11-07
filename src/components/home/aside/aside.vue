@@ -13,7 +13,7 @@
                text-color="rgba(255,255,255,.7)"
                active-text-color="#ffffff"
       >
-        <menuTree></menuTree>
+        <menuTree :menu="treeDate"></menuTree>
       </el-menu>
     </el-aside>
 
@@ -24,7 +24,9 @@
 import menuTree from './menuTree'
 export default {
   data () {
-    return {}
+    return {
+      treeDate:[]
+    }
   },
   components: {
     menuTree
@@ -36,7 +38,18 @@ export default {
       handleClose(key, keyPath) {
         console.log(key, keyPath);
       }
-  }
+  },
+   mounted(){
+    var url = '/api/Power/selectUserPower'
+        this.axios.post(url).then((res)=>{
+          
+          this.treeDate = res.data.data
+          
+        }).catch((error)=>{
+          console.log("error:"+error)
+        })
+   
+  },
 }
 </script>
 

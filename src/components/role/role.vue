@@ -63,6 +63,8 @@
   </div>
   </el-dialog>
 
+
+
   </div>
 
 </template>
@@ -96,7 +98,6 @@ export default {
       this.role_name=''
       this.allPower_id = []
       this.axios.post("/api/Power/selectAllPower").then((res)=>{
-        console.log("所有权限:"+res.data.data)
         this.roleDate = res.data.data
       });
     },
@@ -136,9 +137,7 @@ export default {
       this.axios.post("/api/Role/selectRolePowers",qs.stringify({
         'role_id':this.role_id
       })).then((res)=>{
-
           this.allPower_id = res.data.data
-      
       })
     },
     sure(name) {

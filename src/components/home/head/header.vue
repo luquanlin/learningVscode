@@ -90,7 +90,6 @@
     },
     mounted(){
       this.axios.post("/api/Login/selectSession").then((res)=>{
-        console.log(res.data.data[0].user_name)
         this.user_name = res.data.data[0].user_name
       })
     }

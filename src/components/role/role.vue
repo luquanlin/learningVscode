@@ -55,6 +55,7 @@
       :default-checked-keys="allPower_id"
       :props="defaultProps"
       ref="tree">
+       <!-- :tree-props="{children: 'listpower'}" -->
   </el-tree>
   </el-form>
   <div slot="footer" class="dialog-footer">

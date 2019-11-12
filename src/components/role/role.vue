@@ -47,7 +47,7 @@
     <el-form @submit.native.prevent>
     <el-form-item label="角色名称" :label-width="formLabelWidth">
       <el-input v-model="role_name" auto-complete="off"></el-input>
-    </el-form-item>
+    </el-form-item> 
     <el-tree
       :data="roleDate"
       show-checkbox

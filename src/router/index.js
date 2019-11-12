@@ -10,48 +10,52 @@ import Menu from '@/components/menu/menu'
 import Kind from '@/components/kind/kind'
 import Course from '@/components/course/course'
 import Courseware from '@/components/courseware/courseware'
+import Watch from '@/components/online/watch'
+import Weavers from '@/components/online/courseWeavers/weavers'
+import Curriculum from '@/components/online/curriculums/curriculum'
 Vue.use(Router)
 
 export default new Router({
-  mode:"history",
+  mode: "history",
   routes: [
- 
+
     {
       path: '/',
       name: '首页',
       component: Home,
-      children:[
+      children: [
         {
-        path:"/role",
-        name:"角色管理",
-        component:Rloe,
-      },
-      {
-        path:"/user",
-        name:"用户管理",
-        component:User,
-      },
-      {
-        path:"/menu",
-        name:"权限管理",
-        component:Menu,
-      },
-      {
-        path:"/categorys",
-        name:"类别管理",
-        component:Kind,
-      },
-      {
-        path:"/curriculums",
-        name:"课程管理",
-        component:Course,
-      },
-      {
-        path:"/coursewares",
-        name:"课件管理",
-        component:Courseware,
-      }
-    ]
+          path: "/role",
+          name: "角色管理",
+          component: Rloe,
+        },
+        {
+          path: "/user",
+          name: "用户管理",
+          component: User,
+        },
+        {
+          path: "/menu",
+          name: "权限管理",
+          component: Menu,
+        },
+        {
+          path: "/categorys",
+          name: "类别管理",
+          component: Kind,
+        },
+        {
+          path: "/curriculums",
+          name: "课程管理",
+          component: Course,
+        },
+        {
+          path: "/coursewares",
+          name: "课件管理",
+          component: Courseware,
+        },
+       
+      ]
     },
     {
       path: '/login',
@@ -68,5 +72,20 @@ export default new Router({
       name: '五子棋',
       component: Five
     },
+    {
+      path: "/watch",
+      name: "在线观看",
+      component: Watch,
+    },
+    {
+      path: "/weavers",
+      name: "课件观看",
+      component: Weavers,
+    },
+    {
+      path: "/curriculum",
+      name: "课程",
+      component: Curriculum,
+    }
   ]
 })

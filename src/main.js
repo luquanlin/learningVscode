@@ -9,10 +9,12 @@ import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import store from './vuex/store'
 import VueAxios from 'vue-axios'
+import Fragment from 'vue-fragment'
+
 
 // Vue.prototype.$axios=axios
 Vue.use(VueAxios, axios)
-
+Vue.use(Fragment.Plugin)
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 

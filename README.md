@@ -28,3 +28,7 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+此为在线学习系统前端，使用的框架为Vue.js+ElementUI,使用了vue-cli安装，集合了webpack打包工具。
+
+请配合后台使用，后台网址：https://github.com/luquanlin/learning
